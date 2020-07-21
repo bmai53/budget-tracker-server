@@ -30,8 +30,8 @@ router.post('/register', [
     authController.register(req, res)
 });
 
-router.get('/findUser', (req, res) => {
-    authController.findUser(req, res)
+router.get('/findUser', (req, res, next) => {
+    authController.findUser(req, res, next)
 })
 
 module.exports = router;
