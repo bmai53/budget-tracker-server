@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const authController = require('../controllers/authController')
 
-const {body, validationResult} = require('express-validator')
+const { body, validationResult } = require('express-validator')
 
 router.post("/login", [
     body('email').trim().isAscii(),
@@ -14,7 +14,7 @@ router.post("/login", [
         console.log("Login form validation failed");
         return res.status(422).json({ errors: errors.array() });
     }
-    controller.login
+    authController.login(req, res)
 });
 
 router.post('/register', [
@@ -27,11 +27,11 @@ router.post('/register', [
         console.log(errors)
         return res.status(422).json({ errors: errors.array() });
     }
-    controller.register
+    authController.register(req, res)
 });
 
 router.get('/findUser', (req, res) => {
-    controller.findUser
+    authController.findUser(req, res)
 })
 
 module.exports = router;
