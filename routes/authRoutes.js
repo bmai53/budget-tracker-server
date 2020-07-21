@@ -4,13 +4,11 @@ const authController = require('../controllers/authController')
 
 const { body, validationResult } = require('express-validator')
 
-const cors = require('cors')
-
 router.post("/login", [
     body('email').trim().isAscii(),
     body('password').trim().isAscii(),
     body('*').escape()
-], cors(), (req, res) => {
+], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         console.log("Login form validation failed");
@@ -23,7 +21,7 @@ router.post('/register', [
     body('email').trim().isAscii(),
     body('password').trim().isAscii(),
     body('*').escape()
-], cors(), (req, res) => {
+], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         console.log(errors)
