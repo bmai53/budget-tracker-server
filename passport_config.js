@@ -27,7 +27,7 @@ passport.use(
                     console.log("logged in!")
                     return done(null, user)
                 } else {
-                    return done(null, false, { message: 'Password incorrect' }) //flash message
+                    return done(null, false, { message: 'Password incorrect' })
                 }
             } catch (error) {
                 return done(error)

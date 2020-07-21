@@ -30,9 +30,6 @@ exports.login = (req, res) => {
                     }).status(200)
                 })
             }
-            else {
-                res.status(403).send({auth: false, message:"Incorrect Credentials"})
-            }
         })(req, res)
     } catch (err) {
         console.log(err)
