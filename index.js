@@ -8,9 +8,13 @@ app.use(Express.json())
 
 
 // routes
-app.get('/', (req, res)=>{
+const authRoutes = require('./routes/authRoutes')
+app.get('/', (req, res) => {
     res.send('Hello world')
 })
+
+app.use('/auth', authRoutes)
+
 
 app.listen(port, ()=>{
     console.log('Server running on port', port)
