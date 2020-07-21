@@ -1,5 +1,8 @@
 const Express = require('express')
+const cors = require('cors')
 const app = Express()
+app.use(cors())
+
 // require('dotenv').config()
 
 const port = process.env.PORT || 5000
@@ -7,9 +10,6 @@ const port = process.env.PORT || 5000
 // Parsing data
 app.use(Express.json())
 
-// cors
-const cors = require('cors')
-app.use(cors())
 
 // passport
 const passport = require('passport')
