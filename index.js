@@ -1,9 +1,10 @@
 const Express = require('express')
 const app = Express()
+require('dotenv')
 const port = process.env.PORT || 3000
 
 // Parsing data
-app.use(express.json())
+app.use(Express.json())
 
 
 // routes
