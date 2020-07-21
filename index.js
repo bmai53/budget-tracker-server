@@ -9,11 +9,8 @@ app.use(Express.json())
 
 // cors
 const cors = require('cors')
-const corsOptions = {
-    // origin: 'bmai53.github.io/budget-tracker'
-    optionsSuccessStatus: 200
-}
-app.use(cors(corsOptions))
+app.options('*', cors())
+app.use(cors())
 
 // passport
 const passport = require('passport')
