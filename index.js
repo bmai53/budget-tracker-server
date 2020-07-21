@@ -10,7 +10,6 @@ app.use(Express.json())
 // cors
 const cors = require('cors')
 app.options('*', cors())
-app.use(cors())
 
 // passport
 const passport = require('passport')
