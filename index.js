@@ -1,8 +1,5 @@
 const Express = require('express')
-const cors = require('cors')
 const app = Express()
-app.use(cors())
-
 // require('dotenv').config()
 
 const port = process.env.PORT || 5000
@@ -10,6 +7,13 @@ const port = process.env.PORT || 5000
 // Parsing data
 app.use(Express.json())
 
+// cors
+const cors = require('cors')
+const corsOptions = {
+    // origin: 'bmai53.github.io/budget-tracker'
+    optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions))
 
 // passport
 const passport = require('passport')
