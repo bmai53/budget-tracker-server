@@ -34,4 +34,11 @@ router.get('/findUser', (req, res, next) => {
     authController.findUser(req, res, next)
 })
 
+// only add to test adding new users
+if (process.env.NODE_ENV === 'development'){
+    router.delete('/delete', (req, res) => {
+        authController.delete(req, res)
+    })
+}
+
 module.exports = router;

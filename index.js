@@ -1,6 +1,6 @@
 const Express = require('express')
 const app = Express()
-// require('dotenv').config()
+require('dotenv').config()
 
 const port = process.env.PORT || 5000
 
@@ -26,12 +26,14 @@ app.use(passport.initialize())
 // routes
 const authRoutes = require('./routes/authRoutes')
 app.get('/', (req, res) => {
-    res.send('Hello world')
+    res.status(200).send('Hello world')
 })
 
 app.use('/auth', authRoutes)
 
 
 app.listen(port, ()=>{
-    console.log('Server running on port', port)
+    console.log(`[${process.env.NODE_ENV}] Server running on port ${port}`)
 })
+
+module.exports = app

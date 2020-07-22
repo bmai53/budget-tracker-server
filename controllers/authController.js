@@ -23,11 +23,16 @@ exports.login = (req, res) => {
             if (user) {
                 req.logIn(user, (error) => {
                     const token = jwt.sign({ id: user.email }, process.env.JWT_SECRET)
-                    res.send({
+                    res.status(200).send({
                         auth: true,
                         token: token,
                         message: 'User found and logged in'
-                    }).status(200)
+                    })
+                })
+            } else {
+                res.status(401).send({
+                    auth: false,
+                    message: 'Email or password is incorrect'
                 })
             }
         })(req, res)
@@ -47,9 +52,11 @@ exports.register = async (req, res) => {
             newUser.password = hashedPassword
 
             const newUserAdded = await User.query().insert(newUser)
+            delete newUserAdded.password
             // 201 created
             res.status(201).send({
                 userCreated: true,
+                user: newUserAdded,
                 message: "Success!"
             })
         }
@@ -88,4 +95,10 @@ exports.findUser = (req, res, next) => {
         console.log(err)
         res.sendStatus(400)
     }
+}
+
+
+exports.delete = async (req, res) => {
+    const result = await User.query().delete().where('email', 'like', req.body.email)
+    res.status(200).send({ delete: true, recordsDeleted: result })
 }
