@@ -22,7 +22,7 @@ exports.login = (req, res) => {
             }
             if (user) {
                 req.logIn(user, (error) => {
-                    const token = jwt.sign({ id: user.email }, process.env.JWT_SECRET)
+                    const token = jwt.sign({ id: user_id }, process.env.JWT_SECRET)
                     res.status(200).send({
                         auth: true,
                         token: token,

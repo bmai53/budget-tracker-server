@@ -48,7 +48,7 @@ passport.use(
         // jwt callback
         async (jwt_payload, done) => {
             try {
-                const result = await User.query().where('email', jwt_payload.id) //email is id in this case
+                const result = await User.query().where('user_id', jwt_payload.id)
                 if (result.rowCount === 0) {
                     console.log('user not found')
                     return done(null, false)
