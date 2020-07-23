@@ -6,6 +6,8 @@ require('dotenv').config
 const BCRYPT_SALT_ROUNDS = 10
 
 const User = require('../models/userModel')
+const Category = require('../models/categoryModel')
+const { json } = require('express')
 
 exports.login = (req, res) => {
     try {
@@ -97,6 +99,29 @@ exports.findUser = (req, res, next) => {
     }
 }
 
+exports.getCategories = (req, res, next) => {
+    try {
+        passport.authenticate('jwt', { session: false }, async (error, user, info) => {
+            if (error) {
+                console.log(error)
+            }
+            if (info) {
+                console.log(info.message)
+                res.status(401);
+                res.send(info.message)
+            }
+            else {
+                // change user.user_id to 1 for testing
+                const joinTest = await Category.query().where('user_id', user.user_id).withGraphFetched('user')
+                console.log(joinTest)
+                res.status(200).send(joinTest)
+            }
+        })(req, res, next)
+    } catch (err) {
+        console.log(err)
+        res.sendStatus(400)
+    }
+}
 
 exports.delete = async (req, res) => {
     const result = await User.query().delete().where('email', 'like', req.body.email)

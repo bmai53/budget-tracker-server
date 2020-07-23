@@ -14,7 +14,7 @@ class Category extends Model {
         const User = require('./userModel')
 
         return {
-            category: {
+            user: {
                 relation: Model.BelongsToOneRelation,    // one to many
                 modelClass: User,
                 join: {
@@ -33,7 +33,7 @@ class Category extends Model {
     static get jsonSchema() {
         return {
             type: 'object',
-            required: ['category_id', 'user_id', 'name'],
+            required: ['user_id', 'name'],
             properties: {
                 category_id: { type: 'integer', minLength: 1 },
                 user_id: { type: 'integer', minLength: 1 },
@@ -43,4 +43,4 @@ class Category extends Model {
     }
 }
 
-module.exports = User
+module.exports = Category
