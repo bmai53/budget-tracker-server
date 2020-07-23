@@ -4,6 +4,8 @@ const authController = require('../controllers/authController')
 
 const { body, validationResult } = require('express-validator')
 
+const passport = require('passport')
+
 router.post("/login", [
     body('email').trim().isAscii(),
     body('password').trim().isAscii(),
@@ -36,11 +38,19 @@ router.get('/findUser', (req, res, next) => {
 
 
 // only add to test adding new users
-if (process.env.NODE_ENV === 'development'){
+if (process.env.NODE_ENV === 'development') {
 
-    router.get('/getCategories', (req, res, next) => {
-        authController.getCategories(req, res, next)
+    // router.get('/getCategories', (req, res, next) => {
+    //     authController.getCategories(req, res, next)
+    // })
+
+    router.get('/getCategories', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+        console.log('post jwt auth', req.user)
+        next()
+    }, (req, res) => {
+        authController.getCategories(req, res)
     })
+
 
     router.delete('/delete', (req, res) => {
         authController.delete(req, res)
