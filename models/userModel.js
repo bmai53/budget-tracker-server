@@ -9,13 +9,21 @@ class User extends Model {
         return 'users'
     }
 
-    // static get relationMappings(){
-    //     return {
-    //         category: {
+    static get relationMappings(){
 
-    //         }
-    //     }
-    // }
+        const Category = require('./categoryModel')
+
+        return {
+            category: {
+                relation: Model.HasManyRelation,    // one to many
+                modelClass: Category,
+                join: {
+                    from: 'users.user_id',          // table columns
+                    to: 'categories.user_id'
+                }
+            }
+        }
+    }
 
     // get primary key column
     static get idColumn() {
@@ -25,7 +33,7 @@ class User extends Model {
     static get jsonSchema() {
         return {
             type: 'object',
-            required: ['email', 'password'],
+            required: ['user_id', 'email', 'password'],
             properties:{
                 user_id: { type: 'integer', minLength: 1 },
                 email: { type: 'string', minLength: 1, maxLength: 255 },

@@ -9,25 +9,35 @@ class Category extends Model {
         return 'categories'
     }
 
-    // static get relationMappings(){
-    //     return {
+    static get relationMappings() {
 
-    //     }
-    // }
+        const User = require('./userModel')
+
+        return {
+            category: {
+                relation: Model.BelongsToOneRelation,    // one to many
+                modelClass: User,
+                join: {
+                    from: 'categories.user_id',          // table columns
+                    to: 'users.user_id'
+                }
+            }
+        }
+    }
 
     // get primary key column
     static get idColumn() {
         return 'category_id';
     }
-    
+
     static get jsonSchema() {
         return {
             type: 'object',
-            required: ['email', 'password'],
+            required: ['category_id', 'user_id', 'name'],
             properties: {
                 category_id: { type: 'integer', minLength: 1 },
-                email: { type: 'string', minLength: 1, maxLength: 255 },
-                password: { type: 'string', minLength: 1, maxLength: 255 },
+                user_id: { type: 'integer', minLength: 1 },
+                name: { type: 'string', minLength: 1, maxLength: 255 },
             }
         }
     }
