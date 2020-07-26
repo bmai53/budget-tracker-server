@@ -40,18 +40,6 @@ router.get('/findUser', (req, res, next) => {
 // only add to test adding new users
 if (process.env.NODE_ENV === 'development') {
 
-    // router.get('/getCategories', (req, res, next) => {
-    //     authController.getCategories(req, res, next)
-    // })
-
-    router.get('/getCategories', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-        console.log('post jwt auth', req.user)
-        next()
-    }, (req, res) => {
-        authController.getCategories(req, res)
-    })
-
-
     router.delete('/delete', (req, res) => {
         authController.delete(req, res)
     })
