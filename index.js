@@ -25,11 +25,14 @@ app.use(passport.initialize())
 
 // routes
 const authRoutes = require('./routes/authRoutes')
+const categoryRoutes = require('./routes/categoryRoutes')
+
+app.use('/auth', authRoutes)
+app.use('/category', categoryRoutes)
+
 app.get('/', (req, res) => {
     res.status(200).send('Hello world')
 })
-
-app.use('/auth', authRoutes)
 
 
 app.listen(port, ()=>{
