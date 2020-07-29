@@ -34,11 +34,6 @@ class Activity extends Model {
         }
     }
 
-    // get primary key column
-    static get idColumn() {
-        return 'category_id';
-    }
-
     static get jsonSchema() {
         return {
             type: 'object',
@@ -47,6 +42,7 @@ class Activity extends Model {
                 category_id: { type: 'integer', minLength: 1 },
                 user_id: { type: 'integer', minLength: 1 },
                 name: { type: 'string', minLength: 1, maxLength: 255 },
+                amount: {type: 'decimal', minLength: 1}
             }
         }
     }

@@ -1,13 +1,11 @@
 const passport = require('passport')
 require('dotenv').config
 
-const Category = require('../models/categoryModel')
+const Activity = require('../models/activityModel')
 
-exports.getCategories = async (req, res) => {
+exports.getActivities = async (req, res) => {
     if (req.user) {
-        const data = await Category.query().where('user_id', req.user.id).withGraphFetched('user')
-        console.log(data)
-        res.status(200).send(data)
+        res.status(200).send('getActivities - not yet implemented')
     }
     else {
         res.sendStatus(400)
