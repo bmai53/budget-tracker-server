@@ -25,11 +25,6 @@ class Category extends Model {
         }
     }
 
-    // get primary key column
-    static get idColumn() {
-        return 'category_id';
-    }
-
     static get jsonSchema() {
         return {
             type: 'object',

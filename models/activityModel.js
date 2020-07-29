@@ -52,4 +52,4 @@ class Activity extends Model {
     }
 }
 
-module.exports = Category
+module.exports = Activity

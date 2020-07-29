@@ -5,7 +5,7 @@ const Category = require('../models/categoryModel')
 
 exports.getCategories = async (req, res) => {
     if (req.user) {
-        const joinTest = await Category.query().where('user_id', req.user.user_id).withGraphFetched('user')
+        const joinTest = await Category.query().where('user_id', req.user.id).withGraphFetched('user')
         console.log(joinTest)
         res.status(200).send(joinTest)
     }
