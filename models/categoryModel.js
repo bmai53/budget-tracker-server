@@ -19,7 +19,7 @@ class Category extends Model {
                 modelClass: User,
                 join: {
                     from: 'categories.user_id',          // table columns
-                    to: 'users.user_id'
+                    to: 'users.id'
                 }
             }
         }
@@ -35,7 +35,6 @@ class Category extends Model {
             type: 'object',
             required: ['user_id', 'name'],
             properties: {
-                category_id: { type: 'integer', minLength: 1 },
                 user_id: { type: 'integer', minLength: 1 },
                 name: { type: 'string', minLength: 1, maxLength: 255 },
             }

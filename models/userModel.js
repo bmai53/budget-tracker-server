@@ -18,16 +18,11 @@ class User extends Model {
                 relation: Model.HasManyRelation,    // one to many
                 modelClass: Category,
                 join: {
-                    from: 'users.user_id',          // table columns
+                    from: 'users.id',          // table columns
                     to: 'categories.user_id'
                 }
             }
         }
-    }
-
-    // get primary key column
-    static get idColumn() {
-        return 'user_id';
     }
 
     static get jsonSchema() {
@@ -35,7 +30,6 @@ class User extends Model {
             type: 'object',
             required: ['email', 'password'],
             properties:{
-                user_id: { type: 'integer', minLength: 1 },
                 email: { type: 'string', minLength: 1, maxLength: 255 },
                 password: { type: 'string', minLength: 1, maxLength: 255 },
             }
