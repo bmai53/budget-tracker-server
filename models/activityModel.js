@@ -3,25 +3,34 @@ const knex = require('../db/knex')
 
 Model.knex(knex)
 
-class Category extends Model {
+class Activity extends Model {
 
     static get tableName() {
-        return 'categories'
+        return 'activities'
     }
 
     static get relationMappings() {
 
         const User = require('./userModel')
+        const Category = require('./categoryModel')
 
         return {
             user: {
                 relation: Model.BelongsToOneRelation,    // one to one
                 modelClass: User,
                 join: {
-                    from: 'categories.user_id',          // table columns
-                    to: 'users.user_id'
+                    from: 'activities.user_id',          
+                    to: 'users.id'
                 }
-            }
+            }, 
+            category: {
+                relation: Model.BelongsToOneRelation,    // one to one
+                modelClass: Category,
+                join: {
+                    from: 'activities.category_id',
+                    to: 'categories.id'
+                }
+            }, 
         }
     }
 
