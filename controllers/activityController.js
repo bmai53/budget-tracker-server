@@ -16,7 +16,7 @@ exports.getActivities = async (req, res) => {
     }
 }
 
-// add activity req:  name, amount, category_id
+// add activity req:  name, amount, category_id, date, type['income', 'expense']
 exports.addActivity = async (req, res) => {
     if (req.user) {
         const insertRow = {

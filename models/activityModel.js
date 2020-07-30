@@ -37,12 +37,13 @@ class Activity extends Model {
     static get jsonSchema() {
         return {
             type: 'object',
-            required: ['user_id', 'name'],
+            required: ['user_id', 'name', 'date', 'type'],
             properties: {
+                date: { type: 'date', minLength: 8, minLength: 10 },
                 category_id: { type: 'integer', minLength: 1 },
                 user_id: { type: 'integer', minLength: 1 },
                 name: { type: 'string', minLength: 1, maxLength: 255 },
-                amount: {type: 'decimal', minLength: 1}
+                amount: {type: 'decimal', minLength: 1},
             }
         }
     }

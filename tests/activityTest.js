@@ -46,7 +46,9 @@ describe("Activity tests", () => {
     const testActivity = {
         name: 'mocha chai test activity',
         amount: 99.99,
-        category_id: 1
+        category_id: 1,
+        type: 'expense',
+        date: '2020-07-28'
     }
 
     describe("POST /addActivity success", () => {

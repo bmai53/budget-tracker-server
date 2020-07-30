@@ -1,11 +1,11 @@
 
-exports.seed = function(knex) {
+exports.seed = function (knex) {
   // Deletes ALL existing entries
   return knex('activities').del()
     .then(function () {
       // Inserts seed entries
       return knex('activities').insert([
-        {user_id: 1, category_id: 1, name: 'test purchase', amount: 10.50},
+        { user_id: 1, category_id: 1, name: 'test purchase', amount: 10.50, type: 'expense', date: '2020-07-27' },
       ]);
     });
 };
