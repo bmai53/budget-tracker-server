@@ -10,14 +10,32 @@ exports.getCategories = async (req, res) => {
         res.status(200).send(data)
     }
     else {
-        res.sendStatus(400)
+        res.sendStatus(403)
     }
 }
 
+// req: activity name
 exports.addCategory = async (req, res) => {
-    res.send('addCategory - not yet implemented')
+    if(req.user){
+        const insertRow = {
+            user_id: req.user.id,
+            name: req.body.name
+        }
+        const newCategory = await Category.query().insert(insertRow)
+        res.status(200).send(newCategory)
+    }
+    else {
+        res.sendStatus(403)
+    }
 }
 
+// req: category id
 exports.deleteCategory = async (req, res) => {
-    res.send('deleteCategory - not yet implemented')
+    if (req.user) {
+        const result = await Category.query().deleteById(req.body.id)
+        res.status(200).send({ delete: true, recordsDeleted: result })
+    }
+    else {
+        res.sendStatus(403)
+    }
 }

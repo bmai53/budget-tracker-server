@@ -96,18 +96,6 @@ describe("Authentication Test", () => {
         })
     })
 
-    describe("GET /getCategories success", () => {
-        it('Should return all categories of user', (done) => {
-            chai.request(app)
-                .get('/category/getCategories')
-                .set('Authorization', `JWT ${testUser.token}`) // set Authorization header
-                .end((err, res) => {
-                    res.should.have.status(200)
-                    done()
-                })
-        })
-    })
-
     describe("Delete test user", () => {
         it('Should delete test user', (done) => {
             chai.request(app)

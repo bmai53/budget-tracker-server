@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./tests/*.js --timeout 1000000 --exit",
+    "test": "mocha ./tests/*.js --timeout 30000 --exit",
     "start": "node index.js"
   },
   "author": "",
