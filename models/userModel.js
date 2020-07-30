@@ -21,8 +21,17 @@ class User extends Model {
                     from: 'users.id',          // table columns
                     to: 'categories.user_id'
                 }
+            },
+            activity: {
+                relation: Model.HasManyRelation,    // one to many
+                modelClass: Category,
+                join: {
+                    from: 'users.id',          // table columns
+                    to: 'activities.user_id'
+                }
             }
         }
+        
     }
 
     static get jsonSchema() {

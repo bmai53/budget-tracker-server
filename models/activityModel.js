@@ -16,7 +16,7 @@ class Activity extends Model {
 
         return {
             user: {
-                relation: Model.BelongsToOneRelation,    // one to one
+                relation: Model.BelongsToOneRelation,    // model holds fk
                 modelClass: User,
                 join: {
                     from: 'activities.user_id',          
@@ -24,7 +24,7 @@ class Activity extends Model {
                 }
             }, 
             category: {
-                relation: Model.BelongsToOneRelation,    // one to one
+                relation: Model.BelongsToOneRelation,    // model holds fk
                 modelClass: Category,
                 join: {
                     from: 'activities.category_id',
