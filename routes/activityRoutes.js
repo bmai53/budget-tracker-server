@@ -3,19 +3,16 @@ const passport = require('passport')
 const router = express.Router()
 const activityController = require('../controllers/activityController')
 
-router.get('/getActivities', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-    console.log('post jwt auth', req.user)
-    next()
-}, (req, res) => {
+router.get('/getActivities', passport.authenticate('jwt', { session: false }), (req, res) => {
     activityController.getActivities(req, res)
 })
 
-router.post('/addActivities', (req, res) => {
-    activityController.addActivities(req, res)
+router.post('/addActivity', passport.authenticate('jwt', { session: false }), (req, res) => {
+    activityController.addActivity(req, res)
 })
 
-router.delete('/deleteActivities', (req, res) => {
-    activityController.deleteActivities(req, res)
+router.delete('/deleteActivity', passport.authenticate('jwt', { session: false }), (req, res) => {
+    activityController.deleteActivity(req, res)
 })
 
 

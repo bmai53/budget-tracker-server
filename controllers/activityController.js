@@ -5,17 +5,39 @@ const Activity = require('../models/activityModel')
 
 exports.getActivities = async (req, res) => {
     if (req.user) {
-        res.status(200).send('getActivities - not yet implemented')
+        const data = await Activity.query()
+            .join('categories as c', 'category_id', '=', 'categories.id')
+            .select('activities.*', 'c.name')
+        console.log('getActivities', data)
+        res.status(200).send(data)
     }
     else {
-        res.sendStatus(400)
+        res.sendStatus(403)
     }
 }
 
-exports.addCategory = async (req, res) => {
-    res.send('addCategory - not yet implemented')
+// add activity req:  name, amount, category_id
+exports.addActivity = async (req, res) => {
+    if (req.user) {
+        const insertRow = {
+            user_id: req.user.id,
+            ...req.body
+        }
+        const newActivity = await Activity.query().insert(insertRow)
+        res.status(200).send(newActivity)
+    }
+    else {
+        res.sendStatus(403)
+    }
 }
 
-exports.deleteCategory = async (req, res) => {
-    res.send('deleteCategory - not yet implemented')
+// delete activity req: id
+exports.deleteActivity = async (req, res) => {
+    if (req.user) {
+        const result = await Activity.query().deleteById(req.body.id)
+        res.status(200).send({ delete: true, recordsDeleted: result })
+    }
+    else {
+        res.sendStatus(403)
+    }
 }

@@ -14,7 +14,7 @@ exports.getCategories = async (req, res) => {
     }
 }
 
-// req: activity name
+// add category req: name
 exports.addCategory = async (req, res) => {
     if(req.user){
         const insertRow = {
@@ -29,7 +29,7 @@ exports.addCategory = async (req, res) => {
     }
 }
 
-// req: category id
+// delete category req: id
 exports.deleteCategory = async (req, res) => {
     if (req.user) {
         const result = await Category.query().deleteById(req.body.id)
