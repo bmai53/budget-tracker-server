@@ -12,7 +12,7 @@ const testUser = {
     password: '123456'
 }
 
-describe("Category tests", () => {
+describe("Activity tests", () => {
     describe("POST /login success", () => {
         it('Should return successful login', (done) => {
             chai.request(app)
@@ -30,10 +30,10 @@ describe("Category tests", () => {
         })
     })
 
-    describe("GET /getCategories success", () => {
-        it('Should return all categories of user', (done) => {
+    describe("GET /getActivities success", () => {
+        it('Should return all activities of user', (done) => {
             chai.request(app)
-                .get('/category/getCategories')
+                .get('/activity/getActivities')
                 .set('Authorization', `JWT ${testUser.token}`) // set Authorization header
                 .end((err, res) => {
                     res.should.have.status(200)
@@ -43,30 +43,32 @@ describe("Category tests", () => {
         })
     })
 
-    const testCategory ={
-        name: 'mocha chai test category'
+    const testActivity = {
+        name: 'mocha chai test activity',
+        amount: 99.99,
+        category_id: 1
     }
 
-    describe("POST /addCategory success", () => {
-        it('Should add new category for user', (done) => {
+    describe("POST /addActivity success", () => {
+        it('Should add new activity for user', (done) => {
             chai.request(app)
-                .post('/category/addCategory')
+                .post('/activity/addActivity')
                 .set('Authorization', `JWT ${testUser.token}`)  // set Authorization header
-                .send(testCategory)
+                .send(testActivity)
                 .end((err, res) => {
                     res.should.have.status(200)
-                    testCategory.addResponse = res.body         // save id to later delete
+                    testActivity.addResponse = res.body         // save id to later delete
                     done()
                 })
         })
     })
 
-    describe("DELETE /deleteCategory success", () => {
+    describe("DELETE /deleteActivity success", () => {
         it('Should delete previously added category', (done) => {
             chai.request(app)
-                .delete('/category/deleteCategory')
+                .delete('/activity/deleteActivity')
                 .set('Authorization', `JWT ${testUser.token}`)  // set Authorization header
-                .send({ id: testCategory.addResponse.id})
+                .send({ id: testActivity.addResponse.id })
                 .end((err, res) => {
                     res.should.have.status(200)
                     res.body.delete.should.be.equal(true)

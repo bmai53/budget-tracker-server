@@ -6,8 +6,8 @@ const Activity = require('../models/activityModel')
 exports.getActivities = async (req, res) => {
     if (req.user) {
         const data = await Activity.query()
-            .join('categories as c', 'category_id', '=', 'categories.id')
-            .select('activities.*', 'c.name')
+            .join('categories', 'activities.category_id', '=', 'categories.id')
+            .select('activities.*', 'categories.name')
         console.log('getActivities', data)
         res.status(200).send(data)
     }
