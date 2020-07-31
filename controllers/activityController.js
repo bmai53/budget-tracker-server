@@ -8,6 +8,7 @@ exports.getActivities = async (req, res) => {
         const data = await Activity.query()
             .join('categories', 'activities.category_id', '=', 'categories.id')
             .select('activities.*', 'categories.name')
+            .where('activities.user_id', req.user.id)
         console.log('getActivities', data)
         res.status(200).send(data)
     }
