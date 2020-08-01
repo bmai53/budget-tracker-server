@@ -32,7 +32,7 @@ exports.addCategory = async (req, res) => {
 // delete category req: id
 exports.deleteCategory = async (req, res) => {
     if (req.user) {
-        const result = await Category.query().deleteById(req.body.id)
+        const result = await Category.query().delete().where({id: req.body.id, user_id: req.user.id})
         res.status(200).send({ delete: true, recordsDeleted: result })
     }
     else {
