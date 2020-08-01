@@ -47,7 +47,7 @@ exports.updateActivity = async (req, res) => {
         ...req.body.updateData
     }
     if (req.user) {
-        const updateActivity = await Activity.query().where('id', req.body.id).insert(updateRow)
+        const updateActivity = await Activity.query().where('id', req.body.id).update(updateRow)
         res.status(200).send(updateActivity)
     }
     else {
