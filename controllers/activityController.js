@@ -9,6 +9,7 @@ exports.getActivities = async (req, res) => {
             .join('categories', 'activities.category_id', '=', 'categories.id')
             .select('activities.*', 'categories.name')
             .where('activities.user_id', req.user.id)
+            .orderBy('activities.date', 'desc')
         console.log('getActivities', data)
         res.status(200).send(data)
     }
