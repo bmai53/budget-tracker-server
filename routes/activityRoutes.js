@@ -11,6 +11,10 @@ router.post('/addActivity', passport.authenticate('jwt', { session: false }), (r
     activityController.addActivity(req, res)
 })
 
+router.put('/updateActivity', passport.authenticate('jwt', { session: false }), (req, res) => {
+    activityController.updateActivity(req, res)
+})
+
 router.delete('/deleteActivity', passport.authenticate('jwt', { session: false }), (req, res) => {
     activityController.deleteActivity(req, res)
 })

@@ -32,6 +32,28 @@ exports.addActivity = async (req, res) => {
     }
 }
 
+// add activity req:  id, name, amount, category_id, date, type['income', 'expense']
+// req.body format: 
+// {
+//     id: ACTIVITY_ID,
+//     updateData: {
+//         column: data
+//     }
+// }
+exports.updateActivity = async (req, res) => {
+    const updateRow = {
+        user_id: req.user.id,
+        ...req.body.updateData
+    }
+    if (req.user) {
+        const updateActivity = await Activity.query().where('id', req.body.id).insert(updateRow)
+        res.status(200).send(updateActivity)
+    }
+    else {
+        res.sendStatus(403)
+    }
+}
+
 // delete activity req: id
 exports.deleteActivity = async (req, res) => {
     if (req.user) {

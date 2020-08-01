@@ -43,12 +43,20 @@ describe("Activity tests", () => {
         })
     })
 
-    const testActivity = {
+    let testActivity = {
         name: 'mocha chai test activity',
         amount: 99.99,
         category_id: 1,
         type: 'expense',
         date: '2020-07-28'
+    }
+
+    let updateActivity = {
+        id: null,
+        updateData: {
+            ...testActivity,
+            name: 'updated name'
+        }
     }
 
     describe("POST /addActivity success", () => {
@@ -59,7 +67,24 @@ describe("Activity tests", () => {
                 .send(testActivity)
                 .end((err, res) => {
                     res.should.have.status(200)
-                    testActivity.addResponse = res.body         // save id to later delete
+                    testActivity.addResponseID = res.body.id         // save id to later delete
+                    updateActivity.id = res.body.id
+                    done()
+                })
+        })
+    })
+
+
+
+    describe("PUT /updateActivity success", () => {
+        it('Should update activity name', (done) => {
+            chai.request(app)
+                .put('/activity/updateActivity')
+                .set('Authorization', `JWT ${testUser.token}`)  // set Authorization header
+                .send(updateActivity)
+                .end((err, res) => {
+                    res.should.have.status(200)
+                    res.body.name.should.equal('updated name')
                     done()
                 })
         })
@@ -70,7 +95,7 @@ describe("Activity tests", () => {
             chai.request(app)
                 .delete('/activity/deleteActivity')
                 .set('Authorization', `JWT ${testUser.token}`)  // set Authorization header
-                .send({ id: testActivity.addResponse.id })
+                .send({ id: testActivity.addResponseID })
                 .end((err, res) => {
                     res.should.have.status(200)
                     res.body.delete.should.be.equal(true)
