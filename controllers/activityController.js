@@ -7,7 +7,7 @@ exports.getActivities = async (req, res) => {
     if (req.user) {
         const data = await Activity.query()
             .join('categories', 'activities.category_id', '=', 'categories.id')
-            .select('activities.*', 'categories.name')
+            .select('activities.*', 'categories.name AS category_name')
             .where('activities.user_id', req.user.id)
             .orderBy('activities.date', 'desc')
         console.log('getActivities', data)
