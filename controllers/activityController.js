@@ -46,9 +46,10 @@ exports.updateActivity = async (req, res) => {
         user_id: req.user.id,
         ...req.body.updateData
     }
+    console.log('update row', updateRow)
     if (req.user) {
-        const updateActivity = await Activity.query().where('id', req.body.id).update(updateRow)
-        res.status(200).send(updateActivity)
+        const result = await Activity.query().where({ id: req.body.id, user_id: req.user.id }).update(updateRow)
+        res.status(200).send({ rowsUpdated: result })
     }
     else {
         res.sendStatus(403)

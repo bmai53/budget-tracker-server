@@ -84,7 +84,7 @@ describe("Activity tests", () => {
                 .send(updateActivity)
                 .end((err, res) => {
                     res.should.have.status(200)
-                    res.body.name.should.equal('updated name')
+                    res.body.rowsUpdated.should.equal(1)
                     done()
                 })
         })
