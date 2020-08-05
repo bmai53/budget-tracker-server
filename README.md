@@ -1,6 +1,6 @@
 # budget-tracker-server
 
-Server for upcoming [Budget Tracker App](https://github.com/bmai53/budget-tracker)
+Server for [Budget Tracker App](https://github.com/bmai53/budget-tracker)
 
 Hosted on [Heroku](https://bmai53-budget-tracker-server.herokuapp.com/)
 
