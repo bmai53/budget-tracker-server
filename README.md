@@ -7,6 +7,7 @@ Hosted on [Heroku](https://bmai53-budget-tracker-server.herokuapp.com/)
 ### Tools Used:
 * ExpressJS (controller)
 * PassportJS (authentication)
+* PostgreSQL (database)
 * KnexJS (query builder)
 * ObjectionJS (ORM)
 * Mocha/Chai (testing)
