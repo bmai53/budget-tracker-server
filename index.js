@@ -29,8 +29,13 @@ app.use('/category', categoryRoutes)
 app.use('/activity', activityRoutes)
 
 app.get('/', (req, res) => {
-    res.status(200).send('Hello world')
+    res.redirect('https://bmai53.github.io/budget-tracker')
 })
+
+app.get('*', (req, res) => {
+    res.redirect('/')
+})
+
 
 
 app.listen(port, ()=>{
