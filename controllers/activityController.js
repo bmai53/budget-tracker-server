@@ -82,13 +82,16 @@ exports.uploadCSV = async (req, res) => {
 
             // if rowCategoryID is null then category does not currently exist
             // add new category
-            if (!rowCategoryID) {
+            if (rowCategoryID ==) {
                 const insertRow = {
                     user_id: req.user.id,
                     name: rowCategoryName
                 }
                 const newCategory = await Category.query().insert(insertRow)
                 rowCategoryID = newCategory.id
+
+                // update curCategories
+                curCategories.push(newCategory)
             }
 
             // replace category name with category id
