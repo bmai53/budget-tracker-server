@@ -19,5 +19,8 @@ router.delete('/deleteActivity', passport.authenticate('jwt', { session: false }
     activityController.deleteActivity(req, res)
 })
 
+router.post('/uploadCSV', passport.authenticate('jwt', { session: false }), (req, res) => {
+    activityController.uploadCSV(req, res)
+})
 
 module.exports = router;
