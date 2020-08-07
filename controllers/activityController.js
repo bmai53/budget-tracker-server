@@ -78,9 +78,9 @@ exports.uploadCSV = async (req, res) => {
         for (let i = 1; i < data.length; i++) {
             const rowCategoryName = data[i][categoryIndex]
             const found = curCategories.filter(c => c.name === rowCategoryName)
-            let rowCategoryID = found.id
+            let rowCategoryID = found[0] ? found[0].id : null
 
-            // if rowCategoryID undefined then category does not currently exist
+            // if rowCategoryID is null then category does not currently exist
             // add new category
             if (!rowCategoryID) {
                 const insertRow = {
