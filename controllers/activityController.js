@@ -103,7 +103,7 @@ exports.uploadCSV = async (req, res) => {
                 name: data[i][nameIndex],
                 amount: parseFloat(data[i][amountIndex]),
                 category_id: data[i][categoryIndex],
-                data: data[i][dateIndex],
+                date: data[i][dateIndex],
                 type: data[i][typeIndex].toLowerCase()
             }
 
