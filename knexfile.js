@@ -12,4 +12,12 @@ module.exports = {
       directory: "./db/seeds",
     },
   },
+
+  production: {
+    client: process.env.DATABASE_CLIENT,
+    connection: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  },
 };
