@@ -1,17 +1,15 @@
-require('dotenv').config()
+require("dotenv").config();
 
 module.exports = {
-
-  development:{
+  development: {
     client: process.env.DATABASE_CLIENT,
-    connection: process.env.DATABASE_URL,
+    connection: process.env.DATABASE_URL + "?ssl=true",
     migrations: {
-      directory: './db/migrations',
-      tableName: 'knex_migrations'
+      directory: "./db/migrations",
+      tableName: "knex_migrations",
     },
     seeds: {
-      directory: './db/seeds',
-    }
-  }
-
+      directory: "./db/seeds",
+    },
+  },
 };
